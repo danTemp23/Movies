@@ -66,10 +66,6 @@ extension MovieDetailsView {
             make.leading.equalTo(posterImageView.snp.trailing).offset(12)
             make.trailing.equalToSuperview().offset(-12)
         }
-        overviewLabel.snp.makeConstraints { make in
-            make.top.equalTo(posterImageView.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(12)
-        }
     }
 
     func sutupLightLabel(label: UILabel) {
@@ -79,9 +75,10 @@ extension MovieDetailsView {
     }
 
     func setupSimilarMoviesComponents() {
-        similarMoviesScrollView.addSubview(similarMoviesLabel)
-        similarMoviesScrollView.addSubview(collectionView)
-        similarMoviesScrollView.backgroundColor = .clear
+        scrollView.addSubview(overviewLabel)
+        scrollView.addSubview(similarMoviesLabel)
+        scrollView.addSubview(collectionView)
+        scrollView.backgroundColor = .clear
 
         similarMoviesLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         similarMoviesLabel.numberOfLines = 1
@@ -94,21 +91,29 @@ extension MovieDetailsView {
         collectionView.clipsToBounds = true
         collectionView.backgroundColor = .clear
         
-        similarMoviesScrollView.snp.makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(overviewLabel.snp.bottom).offset(24)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(posterImageView.snp.bottom).offset(12)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+        }
+
+        overviewLabel.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.contentLayoutGuide.snp.top)
+            make.leading.equalTo(self.snp.leading).offset(12)
+            make.trailing.equalTo(self.snp.trailing).offset(-12)
         }
 
         similarMoviesLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(12)
+            make.top.equalTo(overviewLabel.snp.bottom).offset(32)
+            make.leading.equalTo(scrollView.contentLayoutGuide.snp.leading).offset(12)
+            make.trailing.equalTo(scrollView.contentLayoutGuide.snp.trailing).offset(-12)
         }
 
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(similarMoviesLabel.snp.bottom).offset(6)
             make.leading.trailing.equalTo(self).inset(12)
-            make.height.equalTo(200)
+            make.bottom.equalTo(scrollView.contentLayoutGuide.snp.bottom)
+            make.height.equalTo(200).priority(.high)
         }
     }
 }

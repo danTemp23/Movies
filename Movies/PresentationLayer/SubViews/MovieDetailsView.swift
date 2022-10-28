@@ -11,7 +11,7 @@ class MovieDetailsView: UIView {
     let overviewLabel = UILabel()
     let releaseDateLabel = UILabel()
     let genresLabel = UILabel()
-    let similarMoviesScrollView = UIScrollView()
+    let scrollView = UIScrollView()
     let similarMoviesLabel = UILabel()
     var collectionView: UICollectionView!
 
@@ -59,7 +59,7 @@ class MovieDetailsView: UIView {
         setupPosterMagnifierView()
         setupLabels()
         setupSimilarMoviesComponents()
-        similarMoviesScrollView.isHidden = true
+        similarMoviesLabel.isHidden = true
     }
 
     func addSubviews() {
@@ -70,7 +70,6 @@ class MovieDetailsView: UIView {
         addSubview(titleLabel)
         addSubview(releaseDateLabel)
         addSubview(genresLabel)
-        addSubview(overviewLabel)
-        addSubview(similarMoviesScrollView)
+        addSubview(scrollView)
     }
 }

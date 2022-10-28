@@ -13,7 +13,7 @@ class MovieDetailsViewController: UIViewController {
         didSet {
             movieDetailsView?.collectionView.reloadData()
             if similarMovies.count > 0 {
-                movieDetailsView?.similarMoviesScrollView.isHidden = false
+                movieDetailsView?.similarMoviesLabel.isHidden = false
             }
         }
     }
